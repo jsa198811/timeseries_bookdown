@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 2 Análisis Exploratorio Inicial | Series de Tiempo</title>
+  <meta name="description" content="<p>Este es un reporte que consolida el trabajo realizado durante el desarrollo de la asignatura Análisis de Series de Tiempo de la Maestría en Ciencia de Datos.
+set in the _output.yml file.
+The HTML output format for this example is bookdown::gitbook,</p>" />
+  <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 2 Análisis Exploratorio Inicial | Series de Tiempo" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>Este es un reporte que consolida el trabajo realizado durante el desarrollo de la asignatura Análisis de Series de Tiempo de la Maestría en Ciencia de Datos.
+set in the _output.yml file.
+The HTML output format for this example is bookdown::gitbook,</p>" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 2 Análisis Exploratorio Inicial | Series de Tiempo" />
+  
+  <meta name="twitter:description" content="<p>Este es un reporte que consolida el trabajo realizado durante el desarrollo de la asignatura Análisis de Series de Tiempo de la Maestría en Ciencia de Datos.
+set in the _output.yml file.
+The HTML output format for this example is bookdown::gitbook,</p>" />
+  
+
+<meta name="author" content="Jefferson Sanchez" />
+
+
+<meta name="date" content="2023-05-01" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="cross.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Series de Tiempo</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Tema de Interés</a></li>
+<li class="chapter" data-level="2" data-path="análisis-exploratorio-inicial.html"><a href="análisis-exploratorio-inicial.html"><i class="fa fa-check"></i><b>2</b> Análisis Exploratorio Inicial</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="análisis-exploratorio-inicial.html"><a href="análisis-exploratorio-inicial.html#primeras-impresiones"><i class="fa fa-check"></i><b>2.1</b> Primeras impresiones</a></li>
+<li class="chapter" data-level="2.2" data-path="análisis-exploratorio-inicial.html"><a href="análisis-exploratorio-inicial.html#visualización-inicial"><i class="fa fa-check"></i><b>2.2</b> Visualización inicial</a></li>
+<li class="chapter" data-level="2.3" data-path="análisis-exploratorio-inicial.html"><a href="análisis-exploratorio-inicial.html#promedio-móvil"><i class="fa fa-check"></i><b>2.3</b> Promedio Móvil</a></li>
+<li class="chapter" data-level="2.4" data-path="análisis-exploratorio-inicial.html"><a href="análisis-exploratorio-inicial.html#análisis-de-rezagos"><i class="fa fa-check"></i><b>2.4</b> Análisis de rezagos</a></li>
+<li class="chapter" data-level="2.5" data-path="análisis-exploratorio-inicial.html"><a href="análisis-exploratorio-inicial.html#comporamiento-mensual"><i class="fa fa-check"></i><b>2.5</b> Comporamiento mensual</a></li>
+<li class="chapter" data-level="2.6" data-path="análisis-exploratorio-inicial.html"><a href="análisis-exploratorio-inicial.html#operador-diferencia"><i class="fa fa-check"></i><b>2.6</b> Operador diferencia</a></li>
+<li class="chapter" data-level="2.7" data-path="análisis-exploratorio-inicial.html"><a href="análisis-exploratorio-inicial.html#conclusión-preliminar"><i class="fa fa-check"></i><b>2.7</b> Conclusión preliminar</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="cross.html"><a href="cross.html"><i class="fa fa-check"></i><b>3</b> Cross-references</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="cross.html"><a href="cross.html#chapters-and-sub-chapters"><i class="fa fa-check"></i><b>3.1</b> Chapters and sub-chapters</a></li>
+<li class="chapter" data-level="3.2" data-path="cross.html"><a href="cross.html#captioned-figures-and-tables"><i class="fa fa-check"></i><b>3.2</b> Captioned figures and tables</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="parts.html"><a href="parts.html"><i class="fa fa-check"></i><b>4</b> Parts</a></li>
+<li class="chapter" data-level="5" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html"><i class="fa fa-check"></i><b>5</b> Footnotes and citations</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html#footnotes"><i class="fa fa-check"></i><b>5.1</b> Footnotes</a></li>
+<li class="chapter" data-level="5.2" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html#citations"><i class="fa fa-check"></i><b>5.2</b> Citations</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="blocks.html"><a href="blocks.html"><i class="fa fa-check"></i><b>6</b> Blocks</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="blocks.html"><a href="blocks.html#equations"><i class="fa fa-check"></i><b>6.1</b> Equations</a></li>
+<li class="chapter" data-level="6.2" data-path="blocks.html"><a href="blocks.html#theorems-and-proofs"><i class="fa fa-check"></i><b>6.2</b> Theorems and proofs</a></li>
+<li class="chapter" data-level="6.3" data-path="blocks.html"><a href="blocks.html#callout-blocks"><i class="fa fa-check"></i><b>6.3</b> Callout blocks</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="sharing-your-book.html"><a href="sharing-your-book.html"><i class="fa fa-check"></i><b>7</b> Sharing your book</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="sharing-your-book.html"><a href="sharing-your-book.html#publishing"><i class="fa fa-check"></i><b>7.1</b> Publishing</a></li>
+<li class="chapter" data-level="7.2" data-path="sharing-your-book.html"><a href="sharing-your-book.html#pages"><i class="fa fa-check"></i><b>7.2</b> 404 pages</a></li>
+<li class="chapter" data-level="7.3" data-path="sharing-your-book.html"><a href="sharing-your-book.html#metadata-for-sharing"><i class="fa fa-check"></i><b>7.3</b> Metadata for sharing</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Series de Tiempo</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="análisis-exploratorio-inicial" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">Capítulo 2</span> Análisis Exploratorio Inicial<a href="análisis-exploratorio-inicial.html#análisis-exploratorio-inicial" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="primeras-impresiones" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Primeras impresiones<a href="análisis-exploratorio-inicial.html#primeras-impresiones" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>El primer paso consiste en realizar la ingesta de datos y realizar una inspección de una muestra de los registros.</p>
+<pre><code>Rows: 84
+Columns: 2
+$ date &lt;date&gt; 2015-01-31, 2015-02-28, 2015-03-31, 2015-04-30, 2015-05-31, 2015…
+$ c220 &lt;dbl&gt; 15, 5, 6, 3, 6, 5, 11, 9, 4, 6, 6, 6, 29, 31, 15, 16, 10, 16, 12,…</code></pre>
+<p>La base de datos consta de 84 registros e incluye dos variables: la primera es la fecha del último día del mes del registro; y la segunda es la cantidad acumulada de casos de dengue grave durante ese mes. La primera variable se reconoce como tipo fecha, mediante una manipulación inicial; y la segunda es una variable numérica.</p>
+<p>Como parte del proceso de exploración se validaron los siguientes elementos:</p>
+<p>Primero, se trata efectivamente de un objeto de la clase serie de tiempo.</p>
+<pre><code>[1] &quot;ts&quot;</code></pre>
+<p>Segundo, el primer registro corresponde a enero del 2015.</p>
+<pre><code>[1] 2015    1</code></pre>
+<p>Y tercero, el último dato de la serie de tiempo corresponde a diciembre del 2022.</p>
+<pre><code>[1] 2021   12</code></pre>
+<p>Un breve resumen permite identificar que el valor máximo de casos de dengue grave (DG) en Cali durante el periodo de análisis es de 39 episodios en un mes, mientras que el valor mínimo es cero.</p>
+<pre><code>      c220       
+ Min.   : 0.000  
+ 1st Qu.: 1.000  
+ Median : 5.000  
+ Mean   : 6.821  
+ 3rd Qu.:10.000  
+ Max.   :39.000  </code></pre>
+<p>Además, la mitad de los meses bajo análisis tiene hasta cinco contagios, aunque se presentan en promedio unos siete casos de dengue grave por mes. Esto indicaría que la distribución de los casos está sesgada hacia la derecha, y que hay unos valores altos que afectan la media.</p>
+</div>
+<div id="visualización-inicial" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Visualización inicial<a href="análisis-exploratorio-inicial.html#visualización-inicial" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A continuación se presenta la gráfica de la variable de interés, los casos de Dengue Grave (DG), representando su evolución en el tiempo.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig1"></span>
+<img src="_main_files/figure-html/fig1-1.png" alt="Here is a nice figure!" width="80%" />
+<p class="caption">
+Figure 2.1: Here is a nice figure!
+</p>
+</div>
+<p>En la gráfica se destacan dos picos importantes, uno en 2016 y el otro en 2020. Además, la mayoría de los registros son valores relativamente pequeños. Con todo, la primera impresión no da cuenta de alguna tendencia ascendente o descendente, y tampoco de un algun patrón estrictamente repetitivo a lo largo del tiempo.</p>
+<p>A continuación se observa la raiz cuadrada de los valores de la serie para intentar facilitar la identificación de patrones de variación. A partir de este punto, esta transformación será la base de incorporación de los otros recursos.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig2"></span>
+<img src="_main_files/figure-html/fig2-1.png" alt="Here is a nice figure!" width="80%" />
+<p class="caption">
+Figure 2.2: Here is a nice figure!
+</p>
+</div>
+<p>A pesar de que ayuda a estabilizar la varianza, esta aproximación todavía no revela patrones o tendencias evidentes.</p>
+</div>
+<div id="promedio-móvil" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> Promedio Móvil<a href="análisis-exploratorio-inicial.html#promedio-móvil" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>También se utilizó el Promedio Móvil para aproximarse a la serie de tiempo, eliminando algo del ruido de la misma para hacer más clara la tendencia.</p>
+<p>En este caso, se decidió hacer un experimento con dos opciones, relacionadas con el número de meses que valdría la pena tener en cuenta para determinar el valor representativo del periodo vigente.</p>
+<p>La primera opción consistió en calcular un promedio móvil de doce meses, la cual se presenta en la línea de color negro; y la segunda opción, utilizando los tres meses pasados, y se ilustra en la línea de color púrpura. La línea en color gris son los casos reales de dengue grave.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig3"></span>
+<img src="_main_files/figure-html/fig3-1.png" alt="Here is a nice figure!" width="80%" />
+<p class="caption">
+Figure 2.3: Here is a nice figure!
+</p>
+</div>
+<p>El comportamiento de las dos opciones evaluadas puede ser útil, sin embargo, se observa un mayor ajuste de parte de la línea púrpura, lo que sugeriría que esa podría ser una ventana de tiempo más conveniente para gestionar a un pico de contagio de DG, ya que responde de forma más eficaz al cambio de la serie.</p>
+</div>
+<div id="análisis-de-rezagos" class="section level2 hasAnchor" number="2.4">
+<h2><span class="header-section-number">2.4</span> Análisis de rezagos<a href="análisis-exploratorio-inicial.html#análisis-de-rezagos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>También se realizó un análisis de rezagos para determinar relaciones y patrones entre los valores vigentes y pasados de la serie de tiempo.</p>
+<p>El primer recurso que se empleó para el desarrollo de este análisis fue el siguiente conjunto de gráficos de dispersión, los cuales corresponden a la serie y sus desplazamientos hacia atrás en el tiempo. En cada gráfico se incluyen el Coeficiente de Correlación de Pearson.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig4"></span>
+<img src="_main_files/figure-html/fig4-1.png" alt="Here is a nice figure!" width="80%" />
+<p class="caption">
+Figure 2.4: Here is a nice figure!
+</p>
+</div>
+<p>Se observa una relación positiva en todos desplazamientos, sin embargo, se trata de una relación moderada que tiene su valor más alto en el primer desplazamiento y se debilita con cada nuevo periodo añadido. Además, no se identifican comporamientos que se repitan en determinados periodos.</p>
+<p>En cualquier caso, dado que uno de los primeros hallazgos del análisis exploratorio fue evidenciar la existencia de dos picos separados por alrededor de 4 años, se utilizó un segundo recurso para el análsis de rezagos. Esta vez, se propuso emplear una función para evaluar la autocorrelación que puede ser útil para periodos más extensos, como se observa a continación.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig5"></span>
+<img src="_main_files/figure-html/fig5-1.png" alt="Here is a nice figure!" width="80%" />
+<p class="caption">
+Figure 2.5: Here is a nice figure!
+</p>
+</div>
+<p>La gráfica anterior presenta los valores de autocorrelación de hasta 60 meses y confirma lo indicado en el punto anterior, esto es, que pese a las posibles impresiones generadas, la relación entre valores vigentes y pasados de la serie no es tan prometedora y pareciera que sólo aportaría valor en los periodos transcurridos recientemente.</p>
+</div>
+<div id="comporamiento-mensual" class="section level2 hasAnchor" number="2.5">
+<h2><span class="header-section-number">2.5</span> Comporamiento mensual<a href="análisis-exploratorio-inicial.html#comporamiento-mensual" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Otro recurso empleado consiste en el análisis de tendencias agregando los datos por mes de ocurrencia, como se observa en seguida.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig6"></span>
+<img src="_main_files/figure-html/fig6-1.png" alt="Here is a nice figure!" width="80%" />
+<p class="caption">
+Figure 2.6: Here is a nice figure!
+</p>
+</div>
+<p>Este gráfico presenta una visión de la distribución de los datos por mes y es el primero que pareciera evidenciar que hay una cierta estacionalidad oculta en la serie.</p>
+<p>Aunque es una idea todavía por validar a través de otros recursos, pareciera que los primeros meses del año podrían ser de especial atención, ya que por la forma de los violines, dichos meses tendrían reiterativamente los registros más altos en términos de número de episodios de dengue grave.</p>
+</div>
+<div id="operador-diferencia" class="section level2 hasAnchor" number="2.6">
+<h2><span class="header-section-number">2.6</span> Operador diferencia<a href="análisis-exploratorio-inicial.html#operador-diferencia" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>También se decidió representar la serie a través del operador diferencia, con la intención de tener diferentes perspectiva que permitieran reconocer su estructura.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig7"></span>
+<img src="_main_files/figure-html/fig7-1.png" alt="Here is a nice figure!" width="80%" />
+<p class="caption">
+Figure 2.7: Here is a nice figure!
+</p>
+</div>
+<p>En este caso, se utilizó un rezago de 12 meses para tener el valor contra el cual hacer la diferencia. Hasta cierto punto, la gráfica pareciera apuntar a un ciclo que abarca varios años, lo cual podría dificultar la validación del análisis por la disponibilidad de los datos.</p>
+</div>
+<div id="conclusión-preliminar" class="section level2 hasAnchor" number="2.7">
+<h2><span class="header-section-number">2.7</span> Conclusión preliminar<a href="análisis-exploratorio-inicial.html#conclusión-preliminar" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Considerando los recursos utilizados hasta este momento podría decirse que no resulta tan fácil clasificar los Casos de Dengue Grave en Cali del periodo 2015-2022 como una serie con un patrón estacional, sobre todo porque no se observa un compormiento cíclico tan evidente. No obstante, persisten algunos indicios que sugerirían que vale la pena complementar el análisis para llegar a una conclusión con mayor contundencia.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="cross.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/01-intro.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
