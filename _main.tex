@@ -117,7 +117,7 @@
 
 \title{Series de Tiempo}
 \author{Jefferson Sanchez}
-\date{2023-04-07}
+\date{2023-04-30}
 
 \usepackage{amsthm}
 \newtheorem{theorem}{Theorem}[chapter]
@@ -152,15 +152,95 @@ Según los hallazgos preliminares que hemos realizado, los casos de dengue grave
 
 Desde la perspectiva técnica, el conjunto de datos de trabajo que hemos construido, el cual incluye variables meteorológicas, consta de información estructurada en el tiempo, y habilitaría la experimentación con todos los referentes técnicos y herramientas que se nos suministre en el desarrollo de la asignatura Análisis de Series de Tiempo. El efecto de sinergia es evidente, especialmente al considerar que hemos realizado un ejercicio de entendimiento del problema y exploración de dinámicas alrededor del mismo durante los últimos dos semestres.
 
-\hypertarget{hello-bookdown}{%
-\chapter{Hello bookdown}\label{hello-bookdown}}
+\hypertarget{anuxe1lisis-exploratorio-de-datos-inicial}{%
+\chapter{Análisis Exploratorio de Datos Inicial}\label{anuxe1lisis-exploratorio-de-datos-inicial}}
 
-All chapters start with a first-level heading followed by your chapter title, like the line above. There should be only one first-level heading (\texttt{\#}) per .Rmd file.
+\begin{enumerate}
+\def\labelenumi{\roman{enumi}.}
+\setcounter{enumi}{29}
+\tightlist
+\item
+\end{enumerate}
 
-\hypertarget{a-section}{%
-\section{A section}\label{a-section}}
+\hypertarget{primeras-impresiones}{%
+\section{Primeras impresiones}\label{primeras-impresiones}}
 
-All chapter sections start with a second-level (\texttt{\#\#}) or higher heading followed by your section title, like the sections above and below here. You can have as many as you want within a chapter.
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(readxl)}
+
+\NormalTok{data }\OtherTok{\textless{}{-}} \FunctionTok{read\_excel}\NormalTok{(}\StringTok{"\textasciitilde{}/0. MCD/3/TS/unidad 2/data.xlsx"}\NormalTok{, }\AttributeTok{sheet =} \StringTok{"220m"}\NormalTok{)}
+
+\NormalTok{data}\SpecialCharTok{$}\NormalTok{date }\OtherTok{\textless{}{-}} \FunctionTok{as.Date}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{date,}\AttributeTok{format =} \StringTok{"\%d/\%m/\%Y"}\NormalTok{)}
+
+\FunctionTok{class}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{date)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Date"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data.ts }\OtherTok{\textless{}{-}} \FunctionTok{ts}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{c220, }\AttributeTok{start =} \FunctionTok{c}\NormalTok{(}\DecValTok{2015}\NormalTok{,}\DecValTok{1}\NormalTok{), }\AttributeTok{frequency=}\DecValTok{12}\NormalTok{)}
+
+\NormalTok{data.ts}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec
+## 2015  15   5   6   3   6   5  11   9   4   6   6   6
+## 2016  29  31  15  16  10  16  12   6  11   4   1   1
+## 2017   5   1   2   1   2   0   3   1   0   2   1   0
+## 2018   1   0   1   0   2   2   4   0   2   1   1   0
+## 2019   1   3   3   1   0   1   0   0  10  12  11  20
+## 2020  21  39  21  17  23   4  11   9   9  11   8   7
+## 2021   6  13   4   5   3   2   6   6   3   7   5   5
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(data.ts, }\AttributeTok{main=}\StringTok{" "}\NormalTok{, }\AttributeTok{ylab=}\StringTok{"cantidad de casos"}\NormalTok{, }\AttributeTok{col=}\StringTok{"deepskyblue"}\NormalTok{, }\AttributeTok{xlab=}\StringTok{"Años"}\NormalTok{)}
+\FunctionTok{title}\NormalTok{(}\AttributeTok{main=}\StringTok{"Casos de dengue grave en Cali"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-2-1.pdf}
+
+\hypertarget{promedio-muxf3vil}{%
+\section{Promedio Móvil}\label{promedio-muxf3vil}}
+
+\hypertarget{rezago}{%
+\section{Rezago}\label{rezago}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{astsa}\SpecialCharTok{::}\FunctionTok{lag2.plot}\NormalTok{(data.ts, data.ts,}\DecValTok{8}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-3-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{par}\NormalTok{(}\AttributeTok{mar =} \FunctionTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{, }\DecValTok{4}\NormalTok{, .}\DecValTok{1}\NormalTok{, .}\DecValTok{1}\NormalTok{))}
+\FunctionTok{plot}\NormalTok{(pressure, }\AttributeTok{type =} \StringTok{\textquotesingle{}b\textquotesingle{}}\NormalTok{, }\AttributeTok{pch =} \DecValTok{19}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{_main_files/figure-latex/nice-fig2-1} 
+
+}
+
+\caption{Here is a nice figure!}\label{fig:nice-fig2}
+\end{figure}
+
+\hypertarget{estacionalidad}{%
+\section{Estacionalidad}\label{estacionalidad}}
 
 \hypertarget{an-unnumbered-section}{%
 \subsection*{An unnumbered section}\label{an-unnumbered-section}}
