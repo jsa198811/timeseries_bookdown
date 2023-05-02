@@ -4,13 +4,13 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Capítulo 3 Cross-references | Series de Tiempo</title>
+  <title>Capítulo 3 Evaluación de Estacionalidad | Series de Tiempo</title>
   <meta name="description" content="<p>Este es un reporte que consolida el trabajo realizado durante el desarrollo de la asignatura Análisis de Series de Tiempo de la Maestría en Ciencia de Datos.
 set in the _output.yml file.
 The HTML output format for this example is bookdown::gitbook,</p>" />
   <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Capítulo 3 Cross-references | Series de Tiempo" />
+  <meta property="og:title" content="Capítulo 3 Evaluación de Estacionalidad | Series de Tiempo" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="<p>Este es un reporte que consolida el trabajo realizado durante el desarrollo de la asignatura Análisis de Series de Tiempo de la Maestría en Ciencia de Datos.
@@ -19,7 +19,7 @@ The HTML output format for this example is bookdown::gitbook,</p>" />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Capítulo 3 Cross-references | Series de Tiempo" />
+  <meta name="twitter:title" content="Capítulo 3 Evaluación de Estacionalidad | Series de Tiempo" />
   
   <meta name="twitter:description" content="<p>Este es un reporte que consolida el trabajo realizado durante el desarrollo de la asignatura Análisis de Series de Tiempo de la Maestría en Ciencia de Datos.
 set in the _output.yml file.
@@ -29,7 +29,7 @@ The HTML output format for this example is bookdown::gitbook,</p>" />
 <meta name="author" content="Jefferson Sanchez" />
 
 
-<meta name="date" content="2023-05-01" />
+<meta name="date" content="2023-05-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -111,10 +111,26 @@ div.csl-indent {
 <li class="chapter" data-level="2.6" data-path="análisis-exploratorio-inicial.html"><a href="análisis-exploratorio-inicial.html#operador-diferencia"><i class="fa fa-check"></i><b>2.6</b> Operador diferencia</a></li>
 <li class="chapter" data-level="2.7" data-path="análisis-exploratorio-inicial.html"><a href="análisis-exploratorio-inicial.html#conclusión-preliminar"><i class="fa fa-check"></i><b>2.7</b> Conclusión preliminar</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="cross.html"><a href="cross.html"><i class="fa fa-check"></i><b>3</b> Cross-references</a>
+<li class="chapter" data-level="3" data-path="cross.html"><a href="cross.html"><i class="fa fa-check"></i><b>3</b> Evaluación de Estacionalidad</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="cross.html"><a href="cross.html#chapters-and-sub-chapters"><i class="fa fa-check"></i><b>3.1</b> Chapters and sub-chapters</a></li>
-<li class="chapter" data-level="3.2" data-path="cross.html"><a href="cross.html#captioned-figures-and-tables"><i class="fa fa-check"></i><b>3.2</b> Captioned figures and tables</a></li>
+<li class="chapter" data-level="3.1" data-path="cross.html"><a href="cross.html#adf-test"><i class="fa fa-check"></i><b>3.1</b> ADF test</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="cross.html"><a href="cross.html#evaluación-inicial"><i class="fa fa-check"></i><b>3.1.1</b> Evaluación inicial</a></li>
+<li class="chapter" data-level="3.1.2" data-path="cross.html"><a href="cross.html#evaluación-después-de-transformar-la-ts"><i class="fa fa-check"></i><b>3.1.2</b> Evaluación después de transformar la TS</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="cross.html"><a href="cross.html#funciones-acf-y-pacf"><i class="fa fa-check"></i><b>3.2</b> Funciones ACF y PACF</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="cross.html"><a href="cross.html#acf"><i class="fa fa-check"></i><b>3.2.1</b> ACF</a></li>
+<li class="chapter" data-level="3.2.2" data-path="cross.html"><a href="cross.html#pacf"><i class="fa fa-check"></i><b>3.2.2</b> PACF</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="cross.html"><a href="cross.html#modelo-arima"><i class="fa fa-check"></i><b>3.3</b> Modelo ARIMA</a></li>
+<li class="chapter" data-level="3.4" data-path="cross.html"><a href="cross.html#puntos-de-cambio"><i class="fa fa-check"></i><b>3.4</b> Puntos de cambio</a></li>
+<li class="chapter" data-level="3.5" data-path="cross.html"><a href="cross.html#predicción"><i class="fa fa-check"></i><b>3.5</b> Predicción</a></li>
+<li class="chapter" data-level="3.6" data-path="cross.html"><a href="cross.html#validación"><i class="fa fa-check"></i><b>3.6</b> Validación</a></li>
+<li class="chapter" data-level="3.7" data-path="cross.html"><a href="cross.html#supuestos-de-una-arima"><i class="fa fa-check"></i><b>3.7</b> Supuestos de una ARIMA</a>
+<ul>
+<li class="chapter" data-level="3.7.1" data-path="cross.html"><a href="cross.html#media-cero-de-los-residuos"><i class="fa fa-check"></i><b>3.7.1</b> Media cero de los residuos</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="parts.html"><a href="parts.html"><i class="fa fa-check"></i><b>4</b> Parts</a></li>
 <li class="chapter" data-level="5" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html"><i class="fa fa-check"></i><b>5</b> Footnotes and citations</a>
@@ -156,86 +172,100 @@ div.csl-indent {
 
             <section class="normal" id="section-">
 <div id="cross" class="section level1 hasAnchor" number="3">
-<h1><span class="header-section-number">Capítulo 3</span> Cross-references<a href="cross.html#cross" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>Cross-references make it easier for your readers to find and link to elements in your book.</p>
-<div id="chapters-and-sub-chapters" class="section level2 hasAnchor" number="3.1">
-<h2><span class="header-section-number">3.1</span> Chapters and sub-chapters<a href="cross.html#chapters-and-sub-chapters" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>There are two steps to cross-reference any heading:</p>
-<ol style="list-style-type: decimal">
-<li>Label the heading: <code># Hello world {#nice-label}</code>.
-<ul>
-<li>Leave the label off if you like the automated heading generated based on your heading title: for example, <code># Hello world</code> = <code># Hello world {#hello-world}</code>.</li>
-<li>To label an un-numbered heading, use: <code># Hello world {-#nice-label}</code> or <code>{# Hello world .unnumbered}</code>.</li>
-</ul></li>
-<li>Next, reference the labeled heading anywhere in the text using <code>\@ref(nice-label)</code>; for example, please see Chapter <a href="cross.html#cross">3</a>.
-<ul>
-<li>If you prefer text as the link instead of a numbered reference use: <a href="cross.html#cross">any text you want can go here</a>.</li>
-</ul></li>
-</ol>
-</div>
-<div id="captioned-figures-and-tables" class="section level2 hasAnchor" number="3.2">
-<h2><span class="header-section-number">3.2</span> Captioned figures and tables<a href="cross.html#captioned-figures-and-tables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Figures and tables <em>with captions</em> can also be cross-referenced from elsewhere in your book using <code>\@ref(fig:chunk-label)</code> and <code>\@ref(tab:chunk-label)</code>, respectively.</p>
-<p>See Figure <a href="cross.html#fig:nice-fig">3.1</a>.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:nice-fig"></span>
-<img src="_main_files/figure-html/nice-fig-1.png" alt="Plot with connected points showing that vapor pressure of mercury increases exponentially as temperature increases." width="80%" />
-<p class="caption">
-Figure 3.1: Here is a nice figure!
-</p>
-</div>
-<p>Don’t miss Table <a href="cross.html#tab:nice-tab">3.1</a>.</p>
-<table>
-<caption><span id="tab:nice-tab">Table 3.1: </span>Here is a nice table!</caption>
-<thead>
-<tr class="header">
-<th align="right">temperature</th>
-<th align="right">pressure</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="right">0</td>
-<td align="right">0.0002</td>
-</tr>
-<tr class="even">
-<td align="right">20</td>
-<td align="right">0.0012</td>
-</tr>
-<tr class="odd">
-<td align="right">40</td>
-<td align="right">0.0060</td>
-</tr>
-<tr class="even">
-<td align="right">60</td>
-<td align="right">0.0300</td>
-</tr>
-<tr class="odd">
-<td align="right">80</td>
-<td align="right">0.0900</td>
-</tr>
-<tr class="even">
-<td align="right">100</td>
-<td align="right">0.2700</td>
-</tr>
-<tr class="odd">
-<td align="right">120</td>
-<td align="right">0.7500</td>
-</tr>
-<tr class="even">
-<td align="right">140</td>
-<td align="right">1.8500</td>
-</tr>
-<tr class="odd">
-<td align="right">160</td>
-<td align="right">4.2000</td>
-</tr>
-<tr class="even">
-<td align="right">180</td>
-<td align="right">8.8000</td>
-</tr>
-</tbody>
-</table>
+<h1><span class="header-section-number">Capítulo 3</span> Evaluación de Estacionalidad<a href="cross.html#cross" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="adf-test" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> ADF test<a href="cross.html#adf-test" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Se utiliza la prueba de Dickey-Fuller Aumentado (ADF) para obtener una estadística que permita confirmar o descartar la estacionalidad de la serie Casos de Dengue Grave en Cali.</p>
+<div id="evaluación-inicial" class="section level3 hasAnchor" number="3.1.1">
+<h3><span class="header-section-number">3.1.1</span> Evaluación inicial<a href="cross.html#evaluación-inicial" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<pre><code>
+    Augmented Dickey-Fuller Test
 
+data:  c220.ts
+Dickey-Fuller = -2.2133, Lag order = 4, p-value = 0.4884
+alternative hypothesis: stationary</code></pre>
+<p>Dado que el valor de probabilidad obtenido es mayor que el nivel de significancia elegido, que en este caso es 0.05, entonces no se puede rechazar la hipótesis nula de la prueba, y se concluye que no hay evidencia suficiente para afirmar que la serie de tiempo es estacionaria.</p>
+</div>
+<div id="evaluación-después-de-transformar-la-ts" class="section level3 hasAnchor" number="3.1.2">
+<h3><span class="header-section-number">3.1.2</span> Evaluación después de transformar la TS<a href="cross.html#evaluación-después-de-transformar-la-ts" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>En la búsqueda de opciones de representación se había empleado el Operador Diferencia, y dado que pareciera tener algún potencial para configurar una dinámica que visibilice ciclos periódicos, se realizó un proceso itetarivo que condujo a identificar que si se utiliza un rezago de 1 periodo, entonces, la prueba ADF generaría un resultado distinto al obtenido en la sección anterior.</p>
+<pre><code>
+    Augmented Dickey-Fuller Test
+
+data:  c220i.ts
+Dickey-Fuller = -4.5358, Lag order = 4, p-value = 0.01
+alternative hypothesis: stationary</code></pre>
+<p>En este caso el valor de probabilidad obtenido es menor que el nivel de significancia, entonces se rechaza la hipótesis nula y se concluye que la serie de tiempo transformada con el operador diferencia es estacionaria, porque su media y variana son constantes a lo largo del tiempo.</p>
+</div>
+</div>
+<div id="funciones-acf-y-pacf" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> Funciones ACF y PACF<a href="cross.html#funciones-acf-y-pacf" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="acf" class="section level3 hasAnchor" number="3.2.1">
+<h3><span class="header-section-number">3.2.1</span> ACF<a href="cross.html#acf" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><img src="_main_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+</div>
+<div id="pacf" class="section level3 hasAnchor" number="3.2.2">
+<h3><span class="header-section-number">3.2.2</span> PACF<a href="cross.html#pacf" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><img src="_main_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<pre><code>Don&#39;t know how to automatically pick scale for object of type &lt;ts&gt;.
+Defaulting to continuous.</code></pre>
+<pre><code>Warning: Removed 24 rows containing missing values (`geom_line()`).</code></pre>
+<pre><code>Don&#39;t know how to automatically pick scale for object of type &lt;ts&gt;.
+Defaulting to continuous.</code></pre>
+<pre><code>Warning: Removed 24 rows containing missing values (`geom_line()`).</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+</div>
+</div>
+<div id="modelo-arima" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> Modelo ARIMA<a href="cross.html#modelo-arima" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A continuación se aplica la función auto.arima para encontrar un modelo de ajuste eficiente.</p>
+<pre><code>
+Attaching package: &#39;forecast&#39;</code></pre>
+<pre><code>The following object is masked from &#39;package:ggpubr&#39;:
+
+    gghistogram</code></pre>
+<pre><code>Series: c220i.ts 
+ARIMA(0,0,1) with zero mean 
+
+Coefficients:
+          ma1
+      -0.4124
+s.e.   0.0993
+
+sigma^2 = 0.9335:  log likelihood = -114.51
+AIC=233.02   AICc=233.17   BIC=237.85
+
+Training set error measures:
+                      ME    RMSE     MAE MPE MAPE      MASE         ACF1
+Training set -0.02942845 0.96036 0.74593 NaN  Inf 0.6448007 -0.009342725</code></pre>
+</div>
+<div id="puntos-de-cambio" class="section level2 hasAnchor" number="3.4">
+<h2><span class="header-section-number">3.4</span> Puntos de cambio<a href="cross.html#puntos-de-cambio" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<pre><code>Successfully loaded changepoint package version 2.2.4
+ See NEWS for details of changes.</code></pre>
+<pre><code>Created Using changepoint version 2.2.4 
+Changepoint type      : Change in mean 
+Method of analysis    : AMOC 
+Test Statistic  : Normal 
+Type of penalty       : MBIC with value, 13.25652 
+Minimum Segment Length : 1 
+Maximum no. of cpts   : 1 
+Changepoint Locations :  </code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+</div>
+<div id="predicción" class="section level2 hasAnchor" number="3.5">
+<h2><span class="header-section-number">3.5</span> Predicción<a href="cross.html#predicción" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="_main_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+</div>
+<div id="validación" class="section level2 hasAnchor" number="3.6">
+<h2><span class="header-section-number">3.6</span> Validación<a href="cross.html#validación" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="supuestos-de-una-arima" class="section level2 hasAnchor" number="3.7">
+<h2><span class="header-section-number">3.7</span> Supuestos de una ARIMA<a href="cross.html#supuestos-de-una-arima" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="media-cero-de-los-residuos" class="section level3 hasAnchor" number="3.7.1">
+<h3><span class="header-section-number">3.7.1</span> Media cero de los residuos<a href="cross.html#media-cero-de-los-residuos" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+
+</div>
 </div>
 </div>
             </section>
