@@ -16,6 +16,7 @@ evaluación-después-de-transformar-la-ts
 funciones-acf-y-pacf
 acf
 pacf
+separación-de-componentes
 modelo-arima
 puntos-de-cambio
 predicción

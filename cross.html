@@ -123,15 +123,16 @@ div.csl-indent {
 <li class="chapter" data-level="3.2.1" data-path="cross.html"><a href="cross.html#acf"><i class="fa fa-check"></i><b>3.2.1</b> ACF</a></li>
 <li class="chapter" data-level="3.2.2" data-path="cross.html"><a href="cross.html#pacf"><i class="fa fa-check"></i><b>3.2.2</b> PACF</a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="cross.html"><a href="cross.html#modelo-arima"><i class="fa fa-check"></i><b>3.3</b> Modelo ARIMA</a></li>
-<li class="chapter" data-level="3.4" data-path="cross.html"><a href="cross.html#puntos-de-cambio"><i class="fa fa-check"></i><b>3.4</b> Puntos de cambio</a></li>
-<li class="chapter" data-level="3.5" data-path="cross.html"><a href="cross.html#predicción"><i class="fa fa-check"></i><b>3.5</b> Predicción</a></li>
-<li class="chapter" data-level="3.6" data-path="cross.html"><a href="cross.html#validación"><i class="fa fa-check"></i><b>3.6</b> Validación</a></li>
-<li class="chapter" data-level="3.7" data-path="cross.html"><a href="cross.html#supuestos-de-una-arima"><i class="fa fa-check"></i><b>3.7</b> Supuestos de una ARIMA</a>
+<li class="chapter" data-level="3.3" data-path="cross.html"><a href="cross.html#separación-de-componentes"><i class="fa fa-check"></i><b>3.3</b> Separación de componentes</a></li>
+<li class="chapter" data-level="3.4" data-path="cross.html"><a href="cross.html#modelo-arima"><i class="fa fa-check"></i><b>3.4</b> Modelo ARIMA</a></li>
+<li class="chapter" data-level="3.5" data-path="cross.html"><a href="cross.html#puntos-de-cambio"><i class="fa fa-check"></i><b>3.5</b> Puntos de cambio</a></li>
+<li class="chapter" data-level="3.6" data-path="cross.html"><a href="cross.html#predicción"><i class="fa fa-check"></i><b>3.6</b> Predicción</a></li>
+<li class="chapter" data-level="3.7" data-path="cross.html"><a href="cross.html#validación"><i class="fa fa-check"></i><b>3.7</b> Validación</a></li>
+<li class="chapter" data-level="3.8" data-path="cross.html"><a href="cross.html#supuestos-de-una-arima"><i class="fa fa-check"></i><b>3.8</b> Supuestos de una ARIMA</a>
 <ul>
-<li class="chapter" data-level="3.7.1" data-path="cross.html"><a href="cross.html#media-cero-de-los-residuos"><i class="fa fa-check"></i><b>3.7.1</b> Media cero de los residuos</a></li>
-<li class="chapter" data-level="3.7.2" data-path="cross.html"><a href="cross.html#independencia-de-los-residuos"><i class="fa fa-check"></i><b>3.7.2</b> Independencia de los residuos</a></li>
-<li class="chapter" data-level="3.7.3" data-path="cross.html"><a href="cross.html#distribución"><i class="fa fa-check"></i><b>3.7.3</b> Distribución</a></li>
+<li class="chapter" data-level="3.8.1" data-path="cross.html"><a href="cross.html#media-cero-de-los-residuos"><i class="fa fa-check"></i><b>3.8.1</b> Media cero de los residuos</a></li>
+<li class="chapter" data-level="3.8.2" data-path="cross.html"><a href="cross.html#independencia-de-los-residuos"><i class="fa fa-check"></i><b>3.8.2</b> Independencia de los residuos</a></li>
+<li class="chapter" data-level="3.8.3" data-path="cross.html"><a href="cross.html#distribución"><i class="fa fa-check"></i><b>3.8.3</b> Distribución</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="parts.html"><a href="parts.html"><i class="fa fa-check"></i><b>4</b> Parts</a></li>
@@ -202,26 +203,27 @@ alternative hypothesis: stationary</code></pre>
 </div>
 <div id="funciones-acf-y-pacf" class="section level2 hasAnchor" number="3.2">
 <h2><span class="header-section-number">3.2</span> Funciones ACF y PACF<a href="cross.html#funciones-acf-y-pacf" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Para avanzar sobre el análisis de autocorrelación y estacionalidad de la serie de tiempo se emplean las funciones de autocorrelación (ACF) y autocorrelación parcial (PACF).</p>
+<p>Como se muestra a continuación, los resultados obtenidos no parecen ser especialmente significativos, porque presentan patrones especialmente destacables y no se presenta ciclos evidentes. Todo esto pareciera resaltar cierta independencia de los valores que toma la variable a lo largo del tiempouna vez más la particularidad de la serie de tiempo, aun después de las transformaciones realizadas hasta ahora.</p>
 <div id="acf" class="section level3 hasAnchor" number="3.2.1">
 <h3><span class="header-section-number">3.2.1</span> ACF<a href="cross.html#acf" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><img src="_main_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/fig8-1.png" width="80%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="pacf" class="section level3 hasAnchor" number="3.2.2">
 <h3><span class="header-section-number">3.2.2</span> PACF<a href="cross.html#pacf" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><img src="_main_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
-<pre><code>Don&#39;t know how to automatically pick scale for
-object of type &lt;ts&gt;. Defaulting to continuous.</code></pre>
-<pre><code>Warning: Removed 24 rows containing missing values
-(`geom_line()`).</code></pre>
-<pre><code>Don&#39;t know how to automatically pick scale for
-object of type &lt;ts&gt;. Defaulting to continuous.</code></pre>
-<pre><code>Warning: Removed 24 rows containing missing values
-(`geom_line()`).</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/fig9-1.png" width="80%" style="display: block; margin: auto;" /></p>
 </div>
 </div>
-<div id="modelo-arima" class="section level2 hasAnchor" number="3.3">
-<h2><span class="header-section-number">3.3</span> Modelo ARIMA<a href="cross.html#modelo-arima" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="separación-de-componentes" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> Separación de componentes<a href="cross.html#separación-de-componentes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Ahora se presenta la descomposición de los componentes de la serie, con la intención de comprender mejor su comportamiento y tendencias a lo largo del tiempo.</p>
+<p><img src="_main_files/figure-html/fig10-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<p>La tendencia de la serie muestra varios cambios de dirección general, siendo que en algunos casos una misma dirección se mantendría por alrededor de 24 meses, pero no se podría asegurar que se trata de intérvalos fijos.</p>
+<p>La estacionalidad presenta los patrones repetitivos más estables, que efectivamente tiene sus puntos más alto en los primeros meses del año, tal como se había anticipado anteriormente en los análisis a través del diagrama de violín.</p>
+<p>Llama la atención que los residuos tengan un rango más amplio que los otros componentes, lo que sugeriría que hay una cantidad de información impotante que no puede ser explicada a través de los otros componentes incluidos en este análisis.</p>
+</div>
+<div id="modelo-arima" class="section level2 hasAnchor" number="3.4">
+<h2><span class="header-section-number">3.4</span> Modelo ARIMA<a href="cross.html#modelo-arima" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>A continuación se aplica la función auto.arima para encontrar un modelo de ajuste eficiente.</p>
 <pre><code>
 Attaching package: &#39;forecast&#39;</code></pre>
@@ -242,33 +244,31 @@ AIC=233.02   AICc=233.17   BIC=237.85
 Training set error measures:
                       ME    RMSE     MAE MPE MAPE      MASE         ACF1
 Training set -0.02942845 0.96036 0.74593 NaN  Inf 0.6448007 -0.009342725</code></pre>
+<p>En este caso el resultado indica que se trata de un modelo de media móvil de orden 1 sin érmino autoregresivo ni diferenciación y con media cero. Esto implica que el modelo intentaría explicar las fluctuaciones en la serie de tiempo utilizando solo el término de media móvil, por lo que asume que las desviaciones de la serie de tiempo se deben principalmente a los errores aleatorios.</p>
 </div>
-<div id="puntos-de-cambio" class="section level2 hasAnchor" number="3.4">
-<h2><span class="header-section-number">3.4</span> Puntos de cambio<a href="cross.html#puntos-de-cambio" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<pre><code>Successfully loaded changepoint package version 2.2.4
- See NEWS for details of changes.</code></pre>
-<pre><code>Created Using changepoint version 2.2.4 
-Changepoint type      : Change in mean 
-Method of analysis    : AMOC 
-Test Statistic  : Normal 
-Type of penalty       : MBIC with value, 13.25652 
-Minimum Segment Length : 1 
-Maximum no. of cpts   : 1 
-Changepoint Locations :  </code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<div id="puntos-de-cambio" class="section level2 hasAnchor" number="3.5">
+<h2><span class="header-section-number">3.5</span> Puntos de cambio<a href="cross.html#puntos-de-cambio" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>También se intentó detectar puntos de cambio de comportamiento de la serie de tiempo.</p>
+<p><img src="_main_files/figure-html/fig11-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<p>La ausencia de puntos de cambio en la gráfica indica que no se tiene evidencia de que la serie de tiempo tenga puntos de cambio significativos en su media. En consecuencia, la serie de tiempo se mantiene relativamente estable sin cambios repentinos de nivel.</p>
 </div>
-<div id="predicción" class="section level2 hasAnchor" number="3.5">
-<h2><span class="header-section-number">3.5</span> Predicción<a href="cross.html#predicción" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><img src="_main_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<div id="predicción" class="section level2 hasAnchor" number="3.6">
+<h2><span class="header-section-number">3.6</span> Predicción<a href="cross.html#predicción" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Se realizó un pronóstico del valor de un mes futuro de la serie de tiempo.</p>
+<p>La gráfica presenta tanto el valor preciso como los intérvalos de confianza. En esta oportunidad, se consideró conveniente este cortísimo plazo porque no se cuenta con la robustez necesaria para elegir un lapso más extenso.</p>
+<p><img src="_main_files/figure-html/fig12-1.png" width="80%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="validación" class="section level2 hasAnchor" number="3.6">
-<h2><span class="header-section-number">3.6</span> Validación<a href="cross.html#validación" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><img src="_main_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<div id="validación" class="section level2 hasAnchor" number="3.7">
+<h2><span class="header-section-number">3.7</span> Validación<a href="cross.html#validación" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A continuación se presenta el resultado del procedimiento realizado para detectar los valores atípicos de la serie de tiempo.</p>
+<p><img src="_main_files/figure-html/fig13-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<p>La gráfica presenta los tres valores que difieren significativamente del patrón general de la serie de tiempo y que coincidirán con los eventos inusuales identificados en secciones anteriores de este reporte.</p>
 </div>
-<div id="supuestos-de-una-arima" class="section level2 hasAnchor" number="3.7">
-<h2><span class="header-section-number">3.7</span> Supuestos de una ARIMA<a href="cross.html#supuestos-de-una-arima" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="media-cero-de-los-residuos" class="section level3 hasAnchor" number="3.7.1">
-<h3><span class="header-section-number">3.7.1</span> Media cero de los residuos<a href="cross.html#media-cero-de-los-residuos" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="supuestos-de-una-arima" class="section level2 hasAnchor" number="3.8">
+<h2><span class="header-section-number">3.8</span> Supuestos de una ARIMA<a href="cross.html#supuestos-de-una-arima" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Finalmente, se realizó la validación de algunos supuestos de un modelo ARIMA.</p>
+<div id="media-cero-de-los-residuos" class="section level3 hasAnchor" number="3.8.1">
+<h3><span class="header-section-number">3.8.1</span> Media cero de los residuos<a href="cross.html#media-cero-de-los-residuos" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <pre><code>
     One Sample t-test
 
@@ -280,83 +280,21 @@ alternative hypothesis: true mean is not equal to 0
 sample estimates:
   mean of x 
 -0.02942845 </code></pre>
+<p>El resultado de la prueba implica que no hay suficiente evidencia para rechazar la hipótesis nula de que la media de los residuos es cero.</p>
 </div>
-<div id="independencia-de-los-residuos" class="section level3 hasAnchor" number="3.7.2">
-<h3><span class="header-section-number">3.7.2</span> Independencia de los residuos<a href="cross.html#independencia-de-los-residuos" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="independencia-de-los-residuos" class="section level3 hasAnchor" number="3.8.2">
+<h3><span class="header-section-number">3.8.2</span> Independencia de los residuos<a href="cross.html#independencia-de-los-residuos" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <pre><code>[1] 0.9309423</code></pre>
+<p>En este caso, el resultado del pvalor indica que no hay suficiente evidencia para rechazar la hipótesis nula de independencia de los residuos.</p>
 </div>
-<div id="distribución" class="section level3 hasAnchor" number="3.7.3">
-<h3><span class="header-section-number">3.7.3</span> Distribución<a href="cross.html#distribución" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><img src="_main_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<div id="distribución" class="section level3 hasAnchor" number="3.8.3">
+<h3><span class="header-section-number">3.8.3</span> Distribución<a href="cross.html#distribución" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <pre><code>
     Shapiro-Wilk normality test
 
 data:  mr
 W = 0.97452, p-value = 0.09793</code></pre>
-<pre><code>Loading required package: carData</code></pre>
-<pre><code>
-Attaching package: &#39;car&#39;</code></pre>
-<pre><code>The following object is masked from &#39;package:purrr&#39;:
-
-    some</code></pre>
-<pre><code>The following object is masked from &#39;package:dplyr&#39;:
-
-    recode</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
-<pre><code>[1] 56 12</code></pre>
-<pre><code>Loading required package: MASS</code></pre>
-<pre><code>
-Attaching package: &#39;MASS&#39;</code></pre>
-<pre><code>The following object is masked from &#39;package:dplyr&#39;:
-
-    select</code></pre>
-<pre><code>Loading required package: survival</code></pre>
-<pre><code>NOTE: Packages &#39;fBasics&#39;, &#39;timeDate&#39;, and &#39;timeSeries&#39; are no longer
-attached to the search() path when &#39;fGarch&#39; is attached.
-
-If needed attach them yourself in your R script by e.g.,
-        require(&quot;timeSeries&quot;)</code></pre>
-<pre><code>Loading required package: timeSeries</code></pre>
-<pre><code>Loading required package: timeDate</code></pre>
-<pre><code>
-Attaching package: &#39;timeDate&#39;</code></pre>
-<pre><code>The following objects are masked from &#39;package:moments&#39;:
-
-    kurtosis, skewness</code></pre>
-<pre><code>
-Attaching package: &#39;timeSeries&#39;</code></pre>
-<pre><code>The following object is masked from &#39;package:zoo&#39;:
-
-    time&lt;-</code></pre>
-<pre><code>    Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
--2.65706 -0.73780 -0.06395 -0.02943  0.53559  3.02664 </code></pre>
-<pre><code>[1] 0.4920221
-attr(,&quot;method&quot;)
-[1] &quot;moment&quot;</code></pre>
-<pre><code>[1] 1.012301
-attr(,&quot;method&quot;)
-[1] &quot;excess&quot;</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-22-1.png" width="672" /><img src="_main_files/figure-html/unnamed-chunk-22-2.png" width="672" /></p>
-<pre><code>$par
-       mean          sd          nu 
--0.06375018  0.96022002  7.97369416 
-
-$objective
-[1] 113.1248
-
-$convergence
-[1] 0
-
-$iterations
-[1] 45
-
-$evaluations
-function gradient 
-      51      149 
-
-$message
-[1] &quot;relative convergence (4)&quot;</code></pre>
-<pre><code>[1] 83</code></pre>
+<p>Y por último, el resultado del pvalor de la prueba Shapiro-Wilk indica que no hay suficiente evidencia para rechazar la hipótesis nula de normalidad de los residuos.</p>
 
 </div>
 </div>
