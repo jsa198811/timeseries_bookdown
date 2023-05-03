@@ -1,6 +1,5 @@
 eq:binom
 thm:tri
-tema-de-interés
 análisis-exploratorio-inicial
 primeras-impresiones
 visualización-inicial
