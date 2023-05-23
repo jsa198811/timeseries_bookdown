@@ -1,34 +1,238 @@
-# Cross-references {#cross}
+# Evaluación de Estacionalidad {#cross}
 
-Cross-references make it easier for your readers to find and link to elements in your book.
 
-## Chapters and sub-chapters
+## ADF test
 
-There are two steps to cross-reference any heading:
+Se utiliza la prueba de Dickey-Fuller Aumentado (ADF) para obtener una estadística que permita confirmar o descartar la estacionalidad de la serie Casos de Dengue Grave en Cali.
 
-1. Label the heading: `# Hello world {#nice-label}`. 
-    - Leave the label off if you like the automated heading generated based on your heading title: for example, `# Hello world` = `# Hello world {#hello-world}`.
-    - To label an un-numbered heading, use: `# Hello world {-#nice-label}` or `{# Hello world .unnumbered}`.
+### Evaluación inicial
 
-1. Next, reference the labeled heading anywhere in the text using `\@ref(nice-label)`; for example, please see Chapter \@ref(cross). 
-    - If you prefer text as the link instead of a numbered reference use: [any text you want can go here](#cross).
+```{r message=FALSE, warning=FALSE}
 
-## Captioned figures and tables
+library(tseries)
 
-Figures and tables *with captions* can also be cross-referenced from elsewhere in your book using `\@ref(fig:chunk-label)` and `\@ref(tab:chunk-label)`, respectively.
+adf.test(c220.ts)
 
-See Figure \@ref(fig:nice-fig).
+```
+Dado que el valor de probabilidad obtenido es mayor que el nivel de significancia elegido, que en este caso es 0.05, entonces no se puede rechazar la hipótesis nula de la prueba, y se concluye que no hay evidencia suficiente para afirmar que la serie de tiempo es estacionaria. 
 
-```{r nice-fig, fig.cap='Here is a nice figure!', out.width='80%', fig.asp=.75, fig.align='center', fig.alt='Plot with connected points showing that vapor pressure of mercury increases exponentially as temperature increases.'}
-par(mar = c(4, 4, .1, .1))
-plot(pressure, type = 'b', pch = 19)
+
+### Evaluación después de transformar la TS
+
+En la búsqueda de opciones de representación se había empleado el Operador Diferencia, y dado que pareciera tener algún potencial para configurar una dinámica que visibilice ciclos periódicos, se realizó un proceso itetarivo que condujo a identificar que si se utiliza un rezago de 1 periodo, entonces, la prueba ADF generaría un resultado distinto al obtenido en la sección anterior.
+
+
+
+```{r message=FALSE, warning=FALSE}
+
+c220i.ts <- diff(c220.ts, lag = 1)
+
+adf.test(c220i.ts)
+
 ```
 
-Don't miss Table \@ref(tab:nice-tab).
+En este caso el valor de probabilidad obtenido es menor que el nivel de significancia, entonces se rechaza la hipótesis nula y se concluye que la serie de tiempo transformada con el operador diferencia es estacionaria, porque su media y variana son constantes a lo largo del tiempo.
 
-```{r nice-tab, tidy=FALSE}
-knitr::kable(
-  head(pressure, 10), caption = 'Here is a nice table!',
-  booktabs = TRUE
-)
+
+## Funciones ACF y PACF
+
+Para avanzar sobre el análisis de autocorrelación y estacionalidad de la serie de tiempo se emplean las funciones de autocorrelación (ACF) y autocorrelación parcial (PACF).
+
+Como se muestra a continuación, los resultados obtenidos no parecen ser especialmente significativos, porque presentan patrones especialmente destacables y no se presenta ciclos evidentes. Todo esto pareciera resaltar cierta independencia de los valores que toma la variable a lo largo del tiempouna vez más la particularidad de la serie de tiempo, aun después de las transformaciones realizadas hasta ahora. 
+
+### ACF
+
+```{r fig8, out.width='80%', fig.asp=.75, fig.align='center', message=FALSE, warning=FALSE}
+
+acf(c220i.ts)
+
 ```
+
+
+### PACF
+
+```{r fig9, out.width='80%', fig.asp=.75, fig.align='center', message=FALSE, warning=FALSE}
+
+pacf(c220i.ts)
+
+```
+
+
+
+
+
+## Separación de componentes
+
+Ahora se presenta la descomposición de los componentes de la serie, con la intención de comprender mejor su comportamiento y tendencias a lo largo del tiempo.
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+
+# Separar los componentes de la ts
+decomp <- decompose(c220i.ts)
+
+```
+
+
+```{r fig10, out.width='80%', fig.asp=.75, fig.align='center', message=FALSE, warning=FALSE}
+
+library(ggplot2)
+library(tidyr)
+library(ggpubr)
+
+# Convertir los componentes en un marco de datos
+df <- data.frame(date = time(decomp$x),
+                 data = as.vector(decomp$x),
+                 trend = as.vector(decomp$trend),
+                 seasonal = as.vector(decomp$seasonal),
+                 remainder = as.vector(decomp$random))
+
+df_long <- gather(df, component, value, -date)
+
+
+# Crear gráficos separados para cada componente
+plots <- ggplot(df_long, aes(x = date, y = value, group = component)) +
+  geom_line(color = "gray50", size = 0.9) +
+  facet_grid(component ~ ., scales = "free_y") +
+  theme_bw()
+
+# Presentar los gráficos juntos utilizando ggarrange
+ggarrange(plots, ncol = 1, heights = c(1, 1, 1, 0.5),
+          common.legend = TRUE, legend = "bottom")
+
+```
+
+
+La tendencia de la serie muestra varios cambios de dirección general, siendo que en algunos casos una misma dirección se mantendría por alrededor de 24 meses, pero no se podría asegurar que se trata de intérvalos fijos.
+
+La estacionalidad presenta los patrones repetitivos más estables, que efectivamente tiene sus puntos más alto en los primeros meses del año, tal como se había anticipado anteriormente en los análisis a través del diagrama de violín.
+
+Llama la atención que los residuos tengan un rango más amplio que los otros componentes, lo que sugeriría que hay una cantidad de información impotante que no puede ser explicada a través de los otros componentes incluidos en este análisis.
+
+
+
+## Modelo ARIMA
+
+A continuación se aplica la función auto.arima para encontrar un modelo de ajuste eficiente.
+
+```{r}
+
+library(forecast)
+
+#Aplicar un modelo ARIMA automático a la TS
+fit <- auto.arima(c220i.ts)
+
+summary(fit)
+
+```
+
+
+En este caso el resultado indica que se trata de un modelo de media móvil de orden 1 sin érmino autoregresivo ni diferenciación y con media cero. Esto implica que el modelo intentaría explicar las fluctuaciones en la serie de tiempo utilizando solo el término de media móvil, por lo que asume que las desviaciones de la serie de tiempo se deben principalmente a los errores aleatorios.
+
+
+
+
+## Puntos de cambio
+
+También se intentó detectar puntos de cambio de comportamiento de la serie de tiempo.
+
+```{r fig11, out.width='80%', fig.asp=.75, fig.align='center', message=FALSE, warning=FALSE}
+
+library(changepoint)
+
+# Aplicar la función cpt.mean() a la serie de tiempo
+cpt_obj <- cpt.mean(c220i.ts, method = "AMOC")
+
+# Mostrar los resultados
+plot(cpt_obj)
+
+```
+
+
+La ausencia de puntos de cambio en la gráfica indica que no se tiene evidencia de que la serie de tiempo tenga puntos de cambio significativos en su media. En consecuencia, la serie de tiempo se mantiene relativamente estable sin cambios repentinos de nivel.
+
+
+## Predicción
+
+Se realizó un pronóstico del valor de un mes futuro de la serie de tiempo. 
+
+La gráfica presenta tanto el valor preciso como los intérvalos de confianza. En esta oportunidad, se consideró conveniente este cortísimo plazo porque no se cuenta con la robustez necesaria para elegir un lapso más extenso. 
+
+```{r fig12, out.width='80%', fig.asp=.75, fig.align='center', message=FALSE, warning=FALSE}
+
+library(forecast)
+
+# Hacer predicciones para los próximos meses
+fc <- forecast(c220i.ts, h=1)
+
+
+# Mostrar las predicciones y los intervalos de confianza
+plot(fc)
+
+```
+
+
+
+## Validación
+
+A continuación se presenta el resultado del procedimiento realizado para detectar los valores atípicos de la serie de tiempo.
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+
+library(tsoutliers)
+
+dat.ts<- ts(c220i.ts,frequency=1)
+data.ts.outliers <- tso(dat.ts)
+data.ts.outliers
+
+```
+
+
+```{r fig13, out.width='80%', fig.asp=.75, fig.align='center', message=FALSE, warning=FALSE}
+
+plot(data.ts.outliers)
+
+```
+
+
+La gráfica presenta los tres valores que difieren significativamente del patrón general de la serie de tiempo y que coincidirán con los eventos inusuales identificados en secciones anteriores de este reporte.
+
+
+
+## Supuestos de una ARIMA
+
+Finalmente, se realizó la validación de algunos supuestos de un modelo ARIMA.
+
+### Media cero de los residuos
+
+```{r}
+
+mr<-fit$residuals # estos son los residuos del modelo
+t.test(mr, alternative='two.sided',
+       conf.level=0.95, mu=0)
+
+```
+El resultado de la prueba implica que no hay suficiente evidencia para rechazar la hipótesis nula de que la media de los residuos es cero.
+
+
+### Independencia de los residuos
+
+```{r}
+
+independencia <- Box.test(mr, type="Ljung-Box") # Test de Ljung-Box
+independencia$p.value
+
+```
+
+En este caso, el resultado del pvalor indica que no hay suficiente evidencia para rechazar la hipótesis nula de independencia de los residuos.
+
+
+
+### Distribución
+
+```{r}
+
+shapiro.test(mr)
+
+```
+
+Y por último, el resultado del pvalor de la prueba Shapiro-Wilk indica que no hay suficiente evidencia para rechazar la hipótesis nula de normalidad de los residuos.

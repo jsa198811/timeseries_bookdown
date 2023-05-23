@@ -70,7 +70,7 @@ Además, la mitad de los meses bajo análisis tiene hasta cinco contagios, aunqu
 
 A continuación se presenta la gráfica de la variable de interés, los casos de Dengue Grave (DG), representando su evolución en el tiempo.
 
-```{r fig1, fig.cap='Here is a nice figure!', out.width='80%', fig.asp=.75, fig.align='center', message=FALSE, warning=FALSE}
+```{r fig1, echo=FALSE, fig.align='center', fig.asp=.75, message=FALSE, warning=FALSE, out.width='80%'}
 
 library(ggplot2)
 library(hrbrthemes)
@@ -95,7 +95,7 @@ En la gráfica se destacan dos picos importantes, uno en 2016 y el otro en 2020.
 
 A continuación se observa la raiz cuadrada de los valores de la serie para intentar facilitar la identificación de patrones de variación. A partir de este punto, esta transformación será la base de incorporación de los otros recursos.
 
-```{r fig2, fig.cap='Here is a nice figure!', out.width='80%', fig.asp=.75, fig.align='center', message=FALSE, warning=FALSE}
+```{r fig2, echo=FALSE, fig.align='center', fig.asp=.75, message=FALSE, warning=FALSE, out.width='80%'}
 
 library(ggplot2)
 library(hrbrthemes)
@@ -125,7 +125,7 @@ En este caso, se decidió hacer un experimento con dos opciones, relacionadas co
 La primera opción consistió en calcular un promedio móvil de doce meses, la cual se presenta en la línea de color negro; y la segunda opción, utilizando los tres meses pasados, y se ilustra en la línea de color púrpura. La línea en color gris son los casos reales de dengue grave.
 
 
-```{r fig3, fig.cap='Here is a nice figure!', out.width='80%', fig.asp=.75, fig.align='center', message=FALSE, warning=FALSE}
+```{r fig3, echo=FALSE, fig.align='center', fig.asp=.75, message=FALSE, warning=FALSE, out.width='80%'}
 
 library(ggplot2)
 library(hrbrthemes)
@@ -164,7 +164,7 @@ También se realizó un análisis de rezagos para determinar relaciones y patron
 
 El primer recurso que se empleó para el desarrollo de este análisis fue el siguiente conjunto de gráficos de dispersión, los cuales corresponden a la serie y sus desplazamientos hacia atrás en el tiempo. En cada gráfico se incluyen el Coeficiente de Correlación de Pearson.
 
-```{r fig4, fig.cap='Here is a nice figure!', out.width='80%', fig.asp=.75, fig.align='center', message=FALSE, warning=FALSE}
+```{r fig4, echo=FALSE, fig.align='center', fig.asp=.75, message=FALSE, warning=FALSE, out.width='80%'}
 
 astsa::lag2.plot(c220.ts, c220.ts,8)
 
@@ -176,7 +176,7 @@ Se observa una relación positiva en todos desplazamientos, sin embargo, se trat
 
 En cualquier caso, dado que uno de los primeros hallazgos del análisis exploratorio fue evidenciar la existencia de dos picos separados por alrededor de 4 años, se utilizó un segundo recurso para el análsis de rezagos. Esta vez, se propuso emplear una función para evaluar la autocorrelación que puede ser útil para periodos más extensos, como se observa a continación.
 
-```{r fig5, fig.cap='Here is a nice figure!', out.width='80%', fig.asp=.75, fig.align='center', message=FALSE, warning=FALSE}
+```{r fig5, echo=FALSE, fig.align='center', fig.asp=.75, message=FALSE, warning=FALSE, out.width='80%'}
 
 acf(c220.ts, lag.max = 60,type = "correlation", plot = TRUE, na.action = na.pass, demean = TRUE, main="DG con 60 desplazamientos", cex.main = 1)
 
@@ -191,7 +191,7 @@ La gráfica anterior presenta los valores de autocorrelación de hasta 60 meses 
 
 Otro recurso empleado consiste en el análisis de tendencias agregando los datos por mes de ocurrencia, como se observa en seguida.
 
-```{r fig6, fig.cap='Here is a nice figure!', out.width='80%', fig.asp=.75, fig.align='center', message=FALSE, warning=FALSE}
+```{r fig6, echo=FALSE, fig.align='center', fig.asp=.75, message=FALSE, warning=FALSE, out.width='80%'}
 
 library(tidyverse)
 library(hrbrthemes)
@@ -225,15 +225,16 @@ Aunque es una idea todavía por validar a través de otros recursos, pareciera q
 
 También se decidió representar la serie a través del operador diferencia, con la intención de tener diferentes perspectiva que permitieran reconocer su estructura.
 
-```{r fig7, fig.cap='Here is a nice figure!', out.width='80%', fig.asp=.75, fig.align='center', message=FALSE, warning=FALSE}
+```{r fig7, out.width='80%', fig.asp=.75, fig.align='center', message=FALSE, warning=FALSE}
+
 
 diff_ts <- diff(c220.ts, lag = 12)
 
-df <- data.frame(date = time(diff_ts), value = as.vector(diff_ts))
+df_diff <- data.frame(date = time(diff_ts), value = as.vector(diff_ts))
 
 
 # Crear la gráfica con ggplot
-ggplot(df, aes(x = date, y = value)) +
+ggplot(df_diff, aes(x = date, y = value)) +
   geom_line(color = "#FF5733", size = 1) +  
   theme_ipsum() +
     theme(
@@ -248,7 +249,7 @@ ggplot(df, aes(x = date, y = value)) +
 ```
 
 
-En este caso, se utilizó un rezago de 12 meses para tener el valor contra el cual hacer la diferencia. Hasta cierto punto, la gráfica pareciera apuntar a un ciclo que abarca varios años, lo cual podría dificultar la validación del análisis por la disponibilidad de los datos.
+En este caso, se utilizó un rezago de 12 meses. Hasta cierto punto, la gráfica pareciera sugerir un ciclo que abarca varios años, y si ese fuera el caso, podría dificultar la validación del análisis por la disponibilidad de los datos.
 
 
 
