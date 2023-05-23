@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 2 Evaluación de Estacionalidad | index.knit</title>
+  <meta name="description" content="" />
+  <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 2 Evaluación de Estacionalidad | index.knit" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 2 Evaluación de Estacionalidad | index.knit" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="análisis-exploratorio-inicial.html"/>
+<link rel="next" href="módulo-2.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Series de Tiempo</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="análisis-exploratorio-inicial.html"><a href="análisis-exploratorio-inicial.html"><i class="fa fa-check"></i><b>1</b> Análisis Exploratorio Inicial</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="análisis-exploratorio-inicial.html"><a href="análisis-exploratorio-inicial.html#primeras-impresiones"><i class="fa fa-check"></i><b>1.1</b> Primeras impresiones</a></li>
+<li class="chapter" data-level="1.2" data-path="análisis-exploratorio-inicial.html"><a href="análisis-exploratorio-inicial.html#visualización-inicial"><i class="fa fa-check"></i><b>1.2</b> Visualización inicial</a></li>
+<li class="chapter" data-level="1.3" data-path="análisis-exploratorio-inicial.html"><a href="análisis-exploratorio-inicial.html#promedio-móvil"><i class="fa fa-check"></i><b>1.3</b> Promedio Móvil</a></li>
+<li class="chapter" data-level="1.4" data-path="análisis-exploratorio-inicial.html"><a href="análisis-exploratorio-inicial.html#análisis-de-rezagos"><i class="fa fa-check"></i><b>1.4</b> Análisis de rezagos</a></li>
+<li class="chapter" data-level="1.5" data-path="análisis-exploratorio-inicial.html"><a href="análisis-exploratorio-inicial.html#comporamiento-mensual"><i class="fa fa-check"></i><b>1.5</b> Comporamiento mensual</a></li>
+<li class="chapter" data-level="1.6" data-path="análisis-exploratorio-inicial.html"><a href="análisis-exploratorio-inicial.html#operador-diferencia"><i class="fa fa-check"></i><b>1.6</b> Operador diferencia</a></li>
+<li class="chapter" data-level="1.7" data-path="análisis-exploratorio-inicial.html"><a href="análisis-exploratorio-inicial.html#conclusión-preliminar"><i class="fa fa-check"></i><b>1.7</b> Conclusión preliminar</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="cross.html"><a href="cross.html"><i class="fa fa-check"></i><b>2</b> Evaluación de Estacionalidad</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="cross.html"><a href="cross.html#adf-test"><i class="fa fa-check"></i><b>2.1</b> ADF test</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="cross.html"><a href="cross.html#evaluación-inicial"><i class="fa fa-check"></i><b>2.1.1</b> Evaluación inicial</a></li>
+<li class="chapter" data-level="2.1.2" data-path="cross.html"><a href="cross.html#evaluación-después-de-transformar-la-ts"><i class="fa fa-check"></i><b>2.1.2</b> Evaluación después de transformar la TS</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="cross.html"><a href="cross.html#funciones-acf-y-pacf"><i class="fa fa-check"></i><b>2.2</b> Funciones ACF y PACF</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="cross.html"><a href="cross.html#acf"><i class="fa fa-check"></i><b>2.2.1</b> ACF</a></li>
+<li class="chapter" data-level="2.2.2" data-path="cross.html"><a href="cross.html#pacf"><i class="fa fa-check"></i><b>2.2.2</b> PACF</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="cross.html"><a href="cross.html#separación-de-componentes"><i class="fa fa-check"></i><b>2.3</b> Separación de componentes</a></li>
+<li class="chapter" data-level="2.4" data-path="cross.html"><a href="cross.html#modelo-arima"><i class="fa fa-check"></i><b>2.4</b> Modelo ARIMA</a></li>
+<li class="chapter" data-level="2.5" data-path="cross.html"><a href="cross.html#puntos-de-cambio"><i class="fa fa-check"></i><b>2.5</b> Puntos de cambio</a></li>
+<li class="chapter" data-level="2.6" data-path="cross.html"><a href="cross.html#predicción"><i class="fa fa-check"></i><b>2.6</b> Predicción</a></li>
+<li class="chapter" data-level="2.7" data-path="cross.html"><a href="cross.html#validación"><i class="fa fa-check"></i><b>2.7</b> Validación</a></li>
+<li class="chapter" data-level="2.8" data-path="cross.html"><a href="cross.html#supuestos-de-una-arima"><i class="fa fa-check"></i><b>2.8</b> Supuestos de una ARIMA</a>
+<ul>
+<li class="chapter" data-level="2.8.1" data-path="cross.html"><a href="cross.html#media-cero-de-los-residuos"><i class="fa fa-check"></i><b>2.8.1</b> Media cero de los residuos</a></li>
+<li class="chapter" data-level="2.8.2" data-path="cross.html"><a href="cross.html#independencia-de-los-residuos"><i class="fa fa-check"></i><b>2.8.2</b> Independencia de los residuos</a></li>
+<li class="chapter" data-level="2.8.3" data-path="cross.html"><a href="cross.html#distribución"><i class="fa fa-check"></i><b>2.8.3</b> Distribución</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="módulo-2.html"><a href="módulo-2.html"><i class="fa fa-check"></i><b>3</b> Módulo 2</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="módulo-2.html"><a href="módulo-2.html#unidad-1"><i class="fa fa-check"></i><b>3.1</b> Unidad 1</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="módulo-2.html"><a href="módulo-2.html#modelo-holt---winters"><i class="fa fa-check"></i><b>3.1.1</b> Modelo Holt - Winters</a></li>
+<li class="chapter" data-level="3.1.2" data-path="módulo-2.html"><a href="módulo-2.html#suavizamiento-exponencial"><i class="fa fa-check"></i><b>3.1.2</b> Suavizamiento Exponencial</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html"><i class="fa fa-check"></i><b>4</b> Footnotes and citations</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html#footnotes"><i class="fa fa-check"></i><b>4.1</b> Footnotes</a></li>
+<li class="chapter" data-level="4.2" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html#citations"><i class="fa fa-check"></i><b>4.2</b> Citations</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="blocks.html"><a href="blocks.html"><i class="fa fa-check"></i><b>5</b> Blocks</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="blocks.html"><a href="blocks.html#equations"><i class="fa fa-check"></i><b>5.1</b> Equations</a></li>
+<li class="chapter" data-level="5.2" data-path="blocks.html"><a href="blocks.html#theorems-and-proofs"><i class="fa fa-check"></i><b>5.2</b> Theorems and proofs</a></li>
+<li class="chapter" data-level="5.3" data-path="blocks.html"><a href="blocks.html#callout-blocks"><i class="fa fa-check"></i><b>5.3</b> Callout blocks</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="sharing-your-book.html"><a href="sharing-your-book.html"><i class="fa fa-check"></i><b>6</b> Sharing your book</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="sharing-your-book.html"><a href="sharing-your-book.html#publishing"><i class="fa fa-check"></i><b>6.1</b> Publishing</a></li>
+<li class="chapter" data-level="6.2" data-path="sharing-your-book.html"><a href="sharing-your-book.html#pages"><i class="fa fa-check"></i><b>6.2</b> 404 pages</a></li>
+<li class="chapter" data-level="6.3" data-path="sharing-your-book.html"><a href="sharing-your-book.html#metadata-for-sharing"><i class="fa fa-check"></i><b>6.3</b> Metadata for sharing</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="cross" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">Capítulo 2</span> Evaluación de Estacionalidad<a href="cross.html#cross" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="adf-test" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> ADF test<a href="cross.html#adf-test" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Se utiliza la prueba de Dickey-Fuller Aumentado (ADF) para obtener una estadística que permita confirmar o descartar la estacionalidad de la serie Casos de Dengue Grave en Cali.</p>
+<div id="evaluación-inicial" class="section level3 hasAnchor" number="2.1.1">
+<h3><span class="header-section-number">2.1.1</span> Evaluación inicial<a href="cross.html#evaluación-inicial" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<pre><code>
+    Augmented Dickey-Fuller Test
+
+data:  c220.ts
+Dickey-Fuller = -2.2133, Lag order = 4, p-value = 0.4884
+alternative hypothesis: stationary</code></pre>
+<p>Dado que el valor de probabilidad obtenido es mayor que el nivel de significancia elegido, que en este caso es 0.05, entonces no se puede rechazar la hipótesis nula de la prueba, y se concluye que no hay evidencia suficiente para afirmar que la serie de tiempo es estacionaria.</p>
+</div>
+<div id="evaluación-después-de-transformar-la-ts" class="section level3 hasAnchor" number="2.1.2">
+<h3><span class="header-section-number">2.1.2</span> Evaluación después de transformar la TS<a href="cross.html#evaluación-después-de-transformar-la-ts" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>En la búsqueda de opciones de representación se había empleado el Operador Diferencia, y dado que pareciera tener algún potencial para configurar una dinámica que visibilice ciclos periódicos, se realizó un proceso itetarivo que condujo a identificar que si se utiliza un rezago de 1 periodo, entonces, la prueba ADF generaría un resultado distinto al obtenido en la sección anterior.</p>
+<pre><code>
+    Augmented Dickey-Fuller Test
+
+data:  c220i.ts
+Dickey-Fuller = -4.5358, Lag order = 4, p-value = 0.01
+alternative hypothesis: stationary</code></pre>
+<p>En este caso el valor de probabilidad obtenido es menor que el nivel de significancia, entonces se rechaza la hipótesis nula y se concluye que la serie de tiempo transformada con el operador diferencia es estacionaria, porque su media y variana son constantes a lo largo del tiempo.</p>
+</div>
+</div>
+<div id="funciones-acf-y-pacf" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Funciones ACF y PACF<a href="cross.html#funciones-acf-y-pacf" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Para avanzar sobre el análisis de autocorrelación y estacionalidad de la serie de tiempo se emplean las funciones de autocorrelación (ACF) y autocorrelación parcial (PACF).</p>
+<p>Como se muestra a continuación, los resultados obtenidos no parecen ser especialmente significativos, porque presentan patrones especialmente destacables y no se presenta ciclos evidentes. Todo esto pareciera resaltar cierta independencia de los valores que toma la variable a lo largo del tiempouna vez más la particularidad de la serie de tiempo, aun después de las transformaciones realizadas hasta ahora.</p>
+<div id="acf" class="section level3 hasAnchor" number="2.2.1">
+<h3><span class="header-section-number">2.2.1</span> ACF<a href="cross.html#acf" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><img src="index_files/figure-html/fig8-1.png" width="80%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="pacf" class="section level3 hasAnchor" number="2.2.2">
+<h3><span class="header-section-number">2.2.2</span> PACF<a href="cross.html#pacf" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><img src="index_files/figure-html/fig9-1.png" width="80%" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="separación-de-componentes" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> Separación de componentes<a href="cross.html#separación-de-componentes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Ahora se presenta la descomposición de los componentes de la serie, con la intención de comprender mejor su comportamiento y tendencias a lo largo del tiempo.</p>
+<p><img src="index_files/figure-html/fig10-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<p>La tendencia de la serie muestra varios cambios de dirección general, siendo que en algunos casos una misma dirección se mantendría por alrededor de 24 meses, pero no se podría asegurar que se trata de intérvalos fijos.</p>
+<p>La estacionalidad presenta los patrones repetitivos más estables, que efectivamente tiene sus puntos más alto en los primeros meses del año, tal como se había anticipado anteriormente en los análisis a través del diagrama de violín.</p>
+<p>Llama la atención que los residuos tengan un rango más amplio que los otros componentes, lo que sugeriría que hay una cantidad de información impotante que no puede ser explicada a través de los otros componentes incluidos en este análisis.</p>
+</div>
+<div id="modelo-arima" class="section level2 hasAnchor" number="2.4">
+<h2><span class="header-section-number">2.4</span> Modelo ARIMA<a href="cross.html#modelo-arima" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A continuación se aplica la función auto.arima para encontrar un modelo de ajuste eficiente.</p>
+<pre><code>
+Attaching package: &#39;forecast&#39;</code></pre>
+<pre><code>The following object is masked from &#39;package:ggpubr&#39;:
+
+    gghistogram</code></pre>
+<pre><code>Series: c220i.ts 
+ARIMA(0,0,1) with zero mean 
+
+Coefficients:
+          ma1
+      -0.4124
+s.e.   0.0993
+
+sigma^2 = 0.9335:  log likelihood = -114.51
+AIC=233.02   AICc=233.17   BIC=237.85
+
+Training set error measures:
+                      ME    RMSE     MAE MPE MAPE      MASE         ACF1
+Training set -0.02942845 0.96036 0.74593 NaN  Inf 0.6448007 -0.009342725</code></pre>
+<p>En este caso el resultado indica que se trata de un modelo de media móvil de orden 1 sin érmino autoregresivo ni diferenciación y con media cero. Esto implica que el modelo intentaría explicar las fluctuaciones en la serie de tiempo utilizando solo el término de media móvil, por lo que asume que las desviaciones de la serie de tiempo se deben principalmente a los errores aleatorios.</p>
+</div>
+<div id="puntos-de-cambio" class="section level2 hasAnchor" number="2.5">
+<h2><span class="header-section-number">2.5</span> Puntos de cambio<a href="cross.html#puntos-de-cambio" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>También se intentó detectar puntos de cambio de comportamiento de la serie de tiempo.</p>
+<p><img src="index_files/figure-html/fig11-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<p>La ausencia de puntos de cambio en la gráfica indica que no se tiene evidencia de que la serie de tiempo tenga puntos de cambio significativos en su media. En consecuencia, la serie de tiempo se mantiene relativamente estable sin cambios repentinos de nivel.</p>
+</div>
+<div id="predicción" class="section level2 hasAnchor" number="2.6">
+<h2><span class="header-section-number">2.6</span> Predicción<a href="cross.html#predicción" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Se realizó un pronóstico del valor de un mes futuro de la serie de tiempo.</p>
+<p>La gráfica presenta tanto el valor preciso como los intérvalos de confianza. En esta oportunidad, se consideró conveniente este cortísimo plazo porque no se cuenta con la robustez necesaria para elegir un lapso más extenso.</p>
+<p><img src="index_files/figure-html/fig12-1.png" width="80%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="validación" class="section level2 hasAnchor" number="2.7">
+<h2><span class="header-section-number">2.7</span> Validación<a href="cross.html#validación" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A continuación se presenta el resultado del procedimiento realizado para detectar los valores atípicos de la serie de tiempo.</p>
+<p><img src="index_files/figure-html/fig13-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<p>La gráfica presenta los tres valores que difieren significativamente del patrón general de la serie de tiempo y que coincidirán con los eventos inusuales identificados en secciones anteriores de este reporte.</p>
+</div>
+<div id="supuestos-de-una-arima" class="section level2 hasAnchor" number="2.8">
+<h2><span class="header-section-number">2.8</span> Supuestos de una ARIMA<a href="cross.html#supuestos-de-una-arima" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Finalmente, se realizó la validación de algunos supuestos de un modelo ARIMA.</p>
+<div id="media-cero-de-los-residuos" class="section level3 hasAnchor" number="2.8.1">
+<h3><span class="header-section-number">2.8.1</span> Media cero de los residuos<a href="cross.html#media-cero-de-los-residuos" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<pre><code>
+    One Sample t-test
+
+data:  mr
+t = -0.27762, df = 82, p-value = 0.782
+alternative hypothesis: true mean is not equal to 0
+95 percent confidence interval:
+ -0.2403046  0.1814477
+sample estimates:
+  mean of x 
+-0.02942845 </code></pre>
+<p>El resultado de la prueba implica que no hay suficiente evidencia para rechazar la hipótesis nula de que la media de los residuos es cero.</p>
+</div>
+<div id="independencia-de-los-residuos" class="section level3 hasAnchor" number="2.8.2">
+<h3><span class="header-section-number">2.8.2</span> Independencia de los residuos<a href="cross.html#independencia-de-los-residuos" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<pre><code>[1] 0.9309423</code></pre>
+<p>En este caso, el resultado del pvalor indica que no hay suficiente evidencia para rechazar la hipótesis nula de independencia de los residuos.</p>
+</div>
+<div id="distribución" class="section level3 hasAnchor" number="2.8.3">
+<h3><span class="header-section-number">2.8.3</span> Distribución<a href="cross.html#distribución" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<pre><code>
+    Shapiro-Wilk normality test
+
+data:  mr
+W = 0.97452, p-value = 0.09793</code></pre>
+<p>Y por último, el resultado del pvalor de la prueba Shapiro-Wilk indica que no hay suficiente evidencia para rechazar la hipótesis nula de normalidad de los residuos.</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="análisis-exploratorio-inicial.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="módulo-2.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/02-cross-refs.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["index.pdf", "index.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

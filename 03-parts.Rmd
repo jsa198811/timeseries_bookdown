@@ -1,12 +1,33 @@
-# Parts
+# Módulo 2
 
-You can add parts to organize one or more book chapters together. Parts can be inserted at the top of an .Rmd file, before the first-level chapter heading in that same file. 
+## Unidad 1
 
-Add a numbered part: `# (PART) Act one {-}` (followed by `# A chapter`)
+### Modelo Holt - Winters
 
-Add an unnumbered part: `# (PART\*) Act one {-}` (followed by `# A chapter`)
+```{r}
 
-Add an appendix as a special kind of un-numbered part: `# (APPENDIX) Other stuff {-}` (followed by `# A chapter`). Chapters in an appendix are prepended with letters instead of numbers.
+library(TSA)
+
+modelo_HW = HoltWinters(c220i.ts, seasonal = "additive")
+plot(modelo_HW, main="Ajuste con Holt-Winters", xlab="Año", ylab="Diferencia de casos")
+
+```
+
+```{r}
+
+plot(fitted(modelo_HW), main="Descomposición con HV", xlab="Año", ylab="Dif. Casos")
+
+```
 
 
+
+```{r}
+
+pred=predict(modelo_HW, 3, prediction.interval = TRUE)
+pred
+
+```
+
+
+### Suavizamiento Exponencial
 
