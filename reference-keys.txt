@@ -24,7 +24,10 @@ supuestos-de-una-arima
 media-cero-de-los-residuos
 independencia-de-los-residuos
 distribución
-parts
+módulo-2
+unidad-1
+modelo-holt---winters
+suavizamiento-exponencial
 footnotes-and-citations
 footnotes
 citations
